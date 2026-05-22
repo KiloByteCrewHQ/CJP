@@ -1,0 +1,10 @@
+{
+  "name": "cockroach-knockout",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cockroach Knockout — a 2D web game. Milestone 1: landing page.",
+  "scripts": {
+    "start": "npx --yes serve -l 5173 .",
+    "dev": "npx --yes serve -l 5173 ."
+  }
+}

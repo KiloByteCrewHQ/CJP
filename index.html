@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cockroach Knockout - a 2D web game showdown." />
+  <title>Cockroach Knockout</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪳</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ ARENA BACKGROUND ============ -->
+  <div class="arena" aria-hidden="true">
+    <div class="arena__spotlight"></div>
+    <div class="arena__ring"></div>
+    <div class="arena__rope arena__rope--1"></div>
+    <div class="arena__rope arena__rope--2"></div>
+    <div class="arena__rope arena__rope--3"></div>
+    <div class="particles">
+      <span class="particle"></span><span class="particle"></span>
+      <span class="particle"></span><span class="particle"></span>
+      <span class="particle"></span><span class="particle"></span>
+      <span class="particle"></span><span class="particle"></span>
+    </div>
+  </div>
+
+  <main class="game">
+    <!-- ============ TITLE ============ -->
+    <header class="title-wrap">
+      <h1 class="title">
+        <span class="title__line title__line--top">Cockroach</span>
+        <span class="title__line title__line--bottom">Knockout</span>
+      </h1>
+      <p class="subtitle">The Ultimate Pest Showdown</p>
+    </header>
+
+    <!-- ============ STAGE: HERO vs ROACH ============ -->
+    <section class="stage" aria-label="Game characters">
+
+      <!-- ---------- MODI (HERO) ---------- -->
+      <div class="fighter fighter--hero">
+        <svg class="char char--modi" viewBox="0 0 340 640" role="img" aria-label="Cartoon of Narendra Modi in an orange jacket holding an anti-cockroach spray">
+          <defs>
+            <linearGradient id="jkt" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e08e3b" />
+              <stop offset="1" stop-color="#b9661d" />
+            </linearGradient>
+            <linearGradient id="krt" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f4efdf" />
+              <stop offset="1" stop-color="#ddd5bf" />
+            </linearGradient>
+            <linearGradient id="chu" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f8f6ee" />
+              <stop offset="1" stop-color="#e1ddce" />
+            </linearGradient>
+            <radialGradient id="skn" cx="0.5" cy="0.38" r="0.72">
+              <stop offset="0" stop-color="#d8a37c" />
+              <stop offset="1" stop-color="#be8254" />
+            </radialGradient>
+          </defs>
+
+          <ellipse class="char__shadow" cx="156" cy="626" rx="118" ry="17" />
+
+          <!-- ===== LEGS (white churidar) ===== -->
+          <path d="M118 405 Q110 470 114 520 Q110 552 116 572 Q114 585 123 593 L155 593 Q159 582 157 566 Q161 538 158 508 Q161 458 156 405 Z" fill="url(#chu)" />
+          <path d="M194 405 Q202 470 198 520 Q202 552 196 572 Q198 585 189 593 L157 593 Q153 582 155 566 Q151 538 154 508 Q151 458 156 405 Z" fill="url(#chu)" />
+          <path d="M140 410 Q137 480 142 552 Q140 574 146 590 L156 590 L156 410 Z" fill="#dcd7c5" opacity="0.7" />
+          <path d="M172 410 Q175 480 170 552 Q172 574 166 590 L156 590 L156 410 Z" fill="#cfcab6" opacity="0.55" />
+          <path d="M120 548 Q136 543 153 549" stroke="#d3cdb8" stroke-width="3" fill="none" stroke-linecap="round" />
+          <path d="M122 566 Q137 562 152 568" stroke="#d3cdb8" stroke-width="3" fill="none" stroke-linecap="round" />
+          <path d="M160 549 Q176 543 192 548" stroke="#cbc5af" stroke-width="3" fill="none" stroke-linecap="round" />
+          <path d="M160 568 Q175 562 190 566" stroke="#cbc5af" stroke-width="3" fill="none" stroke-linecap="round" />
+
+          <!-- ===== SHOES (black loafers) ===== -->
+          <path d="M104 588 Q97 610 116 620 Q150 628 174 615 Q179 600 161 591 Q132 582 104 588 Z" fill="#27272b" />
+          <path d="M104 612 Q124 622 152 622 Q170 620 174 615 Q150 628 116 620 Q102 614 104 612 Z" fill="#101013" />
+          <ellipse cx="130" cy="599" rx="20" ry="6" fill="#4e4e57" opacity="0.65" />
+          <path d="M150 596 Q143 618 162 628 Q198 636 222 622 Q227 607 208 598 Q178 589 150 596 Z" fill="#2b2b30" />
+          <path d="M150 620 Q172 630 202 630 Q218 628 222 622 Q198 636 162 628 Q148 622 150 620 Z" fill="#121215" />
+          <ellipse cx="178" cy="607" rx="21" ry="6" fill="#52525c" opacity="0.65" />
+
+          <!-- ===== LEFT ARM (cream kurta sleeve) ===== -->
+          <path d="M104 162 Q84 182 79 224 Q73 286 74 332 Q73 352 79 370 L103 372 Q107 352 106 330 Q108 282 112 226 Q116 186 124 168 Z" fill="url(#krt)" />
+          <path d="M104 162 Q84 182 79 224 Q73 286 74 332 Q73 352 79 370 L88 371 Q83 350 84 312 Q83 258 89 206 Q94 178 104 164 Z" fill="#d8d0b9" opacity="0.6" />
+          <path d="M77 350 Q77 364 82 372 L104 373 Q108 365 107 350 Q92 358 77 350 Z" fill="#e6dfc8" />
+          <path d="M82 371 Q73 388 77 406 Q85 418 100 412 Q108 396 105 372 Q94 379 82 371 Z" fill="url(#skn)" />
+          <path d="M84 392 Q90 398 99 396 M85 400 Q91 405 98 402" stroke="#a9764c" stroke-width="2" fill="none" stroke-linecap="round" />
+
+          <!-- ===== NECK ===== -->
+          <path d="M132 104 L129 156 Q156 170 184 156 L181 104 Q156 120 132 104 Z" fill="#bd8052" />
+          <path d="M132 104 Q156 132 181 104 Q174 124 156 126 Q138 124 132 104 Z" fill="#a9714a" />
+
+          <!-- ===== KURTA TUNIC (cream, below jacket) ===== -->
+          <path d="M114 296 Q104 376 96 442 Q156 456 216 442 Q208 376 198 296 Q156 310 114 296 Z" fill="url(#krt)" />
+          <path d="M96 442 Q156 456 216 442 Q156 464 96 442 Z" fill="#d4ccb3" />
+          <path d="M156 308 L156 450" stroke="#ddd6c0" stroke-width="2.5" />
+          <path d="M104 412 L101 444" stroke="#d4ccb3" stroke-width="3" stroke-linecap="round" />
+          <path d="M208 412 L211 444" stroke="#cdc5ab" stroke-width="3" stroke-linecap="round" />
+          <path d="M120 330 Q116 390 110 440" stroke="#e5dfca" stroke-width="3" fill="none" stroke-linecap="round" />
+          <path d="M192 330 Q196 390 202 440" stroke="#d2cab0" stroke-width="3" fill="none" stroke-linecap="round" />
+
+          <!-- ===== JACKET (orange Nehru vest) ===== -->
+          <g class="modi-breathe">
+            <path d="M86 158 Q76 252 84 334 Q156 352 228 334 Q236 252 226 158 Q220 146 206 150 Q156 138 106 150 Q92 146 86 158 Z" fill="url(#jkt)" />
+            <path d="M86 158 Q76 252 84 334 Q100 340 110 335 Q100 252 106 152 Q94 148 86 158 Z" fill="#a85d18" opacity="0.55" />
+            <path d="M84 334 Q156 352 228 334 Q156 366 84 334 Z" fill="#9a5314" opacity="0.7" />
+            <path d="M150 156 Q156 250 156 334" stroke="#ec9a4a" stroke-width="3" fill="none" opacity="0.5" />
+            <!-- mandarin collar -->
+            <path d="M120 156 Q124 132 156 129 Q188 132 192 156 Q186 144 156 144 Q126 144 120 156 Z" fill="#bd6e22" />
+            <path d="M132 142 Q156 136 180 142" stroke="#ece5d2" stroke-width="3" fill="none" stroke-linecap="round" />
+            <!-- armhole seams -->
+            <path d="M92 162 Q86 210 92 262" stroke="#a85d18" stroke-width="3" fill="none" opacity="0.6" />
+            <path d="M220 162 Q226 210 220 262" stroke="#a85d18" stroke-width="3" fill="none" opacity="0.6" />
+            <!-- button placket -->
+            <line x1="156" y1="160" x2="156" y2="318" stroke="#b5641f" stroke-width="3" />
+            <circle cx="156" cy="172" r="5" fill="#6e4a2a" stroke="#4a3018" stroke-width="1.4" />
+            <circle cx="156" cy="204" r="5" fill="#6e4a2a" stroke="#4a3018" stroke-width="1.4" />
+            <circle cx="156" cy="236" r="5" fill="#6e4a2a" stroke="#4a3018" stroke-width="1.4" />
+            <circle cx="156" cy="268" r="5" fill="#6e4a2a" stroke="#4a3018" stroke-width="1.4" />
+            <circle cx="156" cy="300" r="5" fill="#6e4a2a" stroke="#4a3018" stroke-width="1.4" />
+            <!-- chest pocket + pen -->
+            <rect x="176" y="192" width="30" height="9" rx="3" fill="#ad5f1c" />
+            <rect x="190" y="168" width="5.4" height="28" rx="2.4" fill="#cdd0d2" />
+            <rect x="190" y="168" width="5.4" height="7" rx="2.4" fill="#8b8f92" />
+            <path d="M196 174 L200 178 L200 192" stroke="#9aa0a3" stroke-width="2.2" fill="none" stroke-linecap="round" />
+            <!-- welt pockets -->
+            <rect x="96" y="300" width="42" height="12" rx="6" fill="#ad5f1c" transform="rotate(-9 117 306)" />
+            <rect x="174" y="300" width="42" height="12" rx="6" fill="#ad5f1c" transform="rotate(9 195 306)" />
+          </g>
+
+          <!-- ===== HEAD ===== -->
+          <g class="modi-head">
+            <!-- ears -->
+            <ellipse cx="112" cy="86" rx="11" ry="15" fill="#c98c60" />
+            <ellipse cx="200" cy="86" rx="11" ry="15" fill="#c98c60" />
+            <ellipse cx="112" cy="87" rx="5.5" ry="8.5" fill="#a06845" />
+            <ellipse cx="200" cy="87" rx="5.5" ry="8.5" fill="#a06845" />
+            <!-- face -->
+            <path d="M110 60 Q112 26 156 23 Q200 26 202 60 Q206 100 192 124 Q174 144 156 144 Q138 144 120 124 Q106 100 110 60 Z" fill="url(#skn)" />
+            <ellipse cx="156" cy="54" rx="34" ry="15" fill="#e0ad84" opacity="0.45" />
+
+            <!-- beard (full white) -->
+            <path d="M111 76 Q108 124 132 144 Q146 156 156 156 Q166 156 180 144 Q204 124 201 76 Q190 116 156 120 Q122 116 111 76 Z" fill="#f1f2f3" />
+            <path d="M111 76 Q108 124 132 144 Q146 156 156 156 L156 120 Q122 116 111 76 Z" fill="#dadcdd" />
+            <path d="M126 108 Q133 134 146 148" stroke="#d3d6d7" stroke-width="2.6" fill="none" stroke-linecap="round" />
+            <path d="M156 124 L156 152" stroke="#d3d6d7" stroke-width="2.6" fill="none" stroke-linecap="round" />
+            <path d="M186 108 Q179 134 166 148" stroke="#d3d6d7" stroke-width="2.6" fill="none" stroke-linecap="round" />
+
+            <!-- hair (white, full, swept back) -->
+            <path d="M104 96 Q95 16 156 12 Q217 16 208 96 Q213 50 188 40 Q172 31 156 32 Q140 31 124 40 Q99 50 104 96 Z" fill="#eef0f0" />
+            <path d="M104 96 Q95 16 156 12 Q156 28 156 32 Q140 31 124 40 Q99 50 104 96 Z" fill="#d8dbdc" />
+            <path d="M118 44 Q156 30 194 46" stroke="#fbfcfc" stroke-width="3.2" fill="none" stroke-linecap="round" />
+            <path d="M106 62 Q156 44 206 64" stroke="#fbfcfc" stroke-width="2.8" fill="none" stroke-linecap="round" />
+            <path d="M104 82 Q156 62 208 84" stroke="#cdd1d2" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <path d="M174 36 Q182 60 188 90" stroke="#c5c9ca" stroke-width="3" fill="none" stroke-linecap="round" />
+            <!-- sideburns -->
+            <path d="M106 86 Q103 102 110 116" stroke="#e7e9e9" stroke-width="12" fill="none" stroke-linecap="round" />
+            <path d="M206 86 Q209 102 202 116" stroke="#e7e9e9" stroke-width="12" fill="none" stroke-linecap="round" />
+
+            <!-- eyebrows (white, bushy) -->
+            <path d="M116 60 Q130 50 150 57 Q148 62 150 65 Q132 60 118 67 Q114 63 116 60 Z" fill="#dcdedb" />
+            <path d="M196 60 Q182 50 162 57 Q164 62 162 65 Q180 60 194 67 Q198 63 196 60 Z" fill="#dcdedb" />
+
+            <!-- rimless glasses -->
+            <line x1="114" y1="68" x2="103" y2="80" stroke="#9c8f6e" stroke-width="3" stroke-linecap="round" />
+            <line x1="198" y1="68" x2="209" y2="80" stroke="#9c8f6e" stroke-width="3" stroke-linecap="round" />
+            <rect x="114" y="63" width="42" height="27" rx="11" fill="rgba(216,234,243,0.26)" stroke="#9c8f6e" stroke-width="3" />
+            <rect x="156" y="63" width="42" height="27" rx="11" fill="rgba(216,234,243,0.26)" stroke="#9c8f6e" stroke-width="3" />
+            <path d="M152 72 Q156 68 160 72" stroke="#9c8f6e" stroke-width="3" fill="none" />
+
+            <!-- eyes -->
+            <g class="modi-eyes">
+              <ellipse cx="135" cy="77" rx="9" ry="6.6" fill="#fff" />
+              <ellipse cx="177" cy="77" rx="9" ry="6.6" fill="#fff" />
+              <circle cx="137" cy="78" r="5" fill="#2a1c12" />
+              <circle cx="179" cy="78" r="5" fill="#2a1c12" />
+              <circle cx="138.6" cy="76" r="1.8" fill="#fff" />
+              <circle cx="180.6" cy="76" r="1.8" fill="#fff" />
+              <path d="M126 73 Q135 68 144 73" stroke="#9a6b44" stroke-width="2.3" fill="none" stroke-linecap="round" />
+              <path d="M168 73 Q177 68 186 73" stroke="#9a6b44" stroke-width="2.3" fill="none" stroke-linecap="round" />
+            </g>
+
+            <!-- nose -->
+            <path d="M156 72 Q149 98 153 110 Q156 114 160 110 Q165 100 160 80 Q158 74 157 72 Z" fill="#bd8052" />
+            <ellipse cx="151" cy="108" rx="2.8" ry="2" fill="#a06845" />
+
+            <!-- mustache + mouth -->
+            <path d="M125 105 Q156 96 187 105 Q175 120 156 116 Q137 120 125 105 Z" fill="#f1f2f3" />
+            <path d="M144 120 Q156 126 168 120" stroke="#8a5230" stroke-width="3" fill="none" stroke-linecap="round" />
+          </g>
+
+          <!-- ===== RIGHT ARM + SPRAY ===== -->
+          <g class="modi-spray">
+            <!-- cream kurta sleeve -->
+            <path d="M226 164 L241 252" stroke="#d8d2bc" stroke-width="38" fill="none" stroke-linecap="round" />
+            <path d="M226 164 L241 252" stroke="#efe9d8" stroke-width="33" fill="none" stroke-linecap="round" />
+            <path d="M241 252 L288 233" stroke="#d8d2bc" stroke-width="34" fill="none" stroke-linecap="round" />
+            <path d="M241 252 L288 233" stroke="#efe9d8" stroke-width="29" fill="none" stroke-linecap="round" />
+            <path d="M276 238 L295 231" stroke="#e6dfc8" stroke-width="31" fill="none" stroke-linecap="round" />
+            <!-- spray can -->
+            <g class="spray-can">
+              <g transform="rotate(20 290 226)">
+                <rect x="271" y="150" width="38" height="74" rx="14" fill="#1ea7a0" />
+                <rect x="271" y="150" width="13" height="74" rx="6" fill="#33c9c1" />
+                <rect x="297" y="150" width="12" height="74" rx="6" fill="#157d78" />
+                <rect x="278" y="135" width="24" height="17" rx="6" fill="#444b52" />
+                <rect x="283" y="127" width="14" height="10" rx="4" fill="#5a626b" />
+                <rect x="271" y="176" width="38" height="26" rx="4" fill="#fdfdfd" />
+                <circle cx="290" cy="189" r="9.5" fill="none" stroke="#e23b3b" stroke-width="3" />
+                <path d="M283 182 L297 196" stroke="#e23b3b" stroke-width="3" stroke-linecap="round" />
+                <ellipse cx="290" cy="189" rx="5" ry="3.4" fill="#7a4a2a" />
+              </g>
+            </g>
+            <!-- spray mist -->
+            <g class="mist">
+              <circle class="mist__p" cx="322" cy="140" r="6" fill="#bff3f0" />
+              <circle class="mist__p" cx="335" cy="124" r="7.5" fill="#a6ece8" />
+              <circle class="mist__p" cx="340" cy="146" r="5" fill="#d4f7f5" />
+              <circle class="mist__p" cx="330" cy="156" r="4.5" fill="#c8f5f2" />
+            </g>
+            <!-- hand -->
+            <ellipse cx="291" cy="227" rx="15" ry="16" fill="#c98c60" />
+            <path d="M283 219 Q291 212 300 219 M282 227 Q291 221 300 228 M284 235 Q291 231 298 236" stroke="#a9714a" stroke-width="2.4" fill="none" stroke-linecap="round" />
+          </g>
+        </svg>
+        <span class="fighter__name fighter__name--hero">The Exterminator</span>
+      </div>
+
+      <!-- ---------- VS BADGE ---------- -->
+      <div class="vs">
+        <svg class="vs__burst" viewBox="0 0 200 200" aria-hidden="true">
+          <path fill="#ffce3a" d="M100 4 L122 46 L168 32 L158 80 L200 100 L158 120 L168 168 L122 154 L100 196 L78 154 L32 168 L42 120 L0 100 L42 80 L32 32 L78 46 Z" />
+        </svg>
+        <span class="vs__text">VS</span>
+      </div>
+
+      <!-- ---------- COCKROACH ---------- -->
+      <div class="fighter fighter--roach">
+        <svg class="char char--roach" viewBox="0 0 340 320" role="img" aria-label="Cockroach character wearing boxing gloves">
+          <ellipse class="char__shadow" cx="185" cy="298" rx="120" ry="22" />
+          <g class="roach-bob">
+            <!-- legs -->
+            <path d="M150 230 q-8 36 -30 56" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
+            <path d="M195 240 q4 38 -10 60" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
+            <path d="M235 236 q18 32 14 60" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
+            <path d="M270 220 q30 24 40 50" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
+
+            <!-- body -->
+            <ellipse cx="200" cy="168" rx="128" ry="94" fill="#6f421f" />
+            <ellipse cx="200" cy="168" rx="128" ry="94" fill="url(#roachGrad)" />
+            <!-- wing shells -->
+            <path d="M120 96 Q210 70 320 110 Q300 220 210 244 Q150 170 120 96 Z" fill="#7d4d27" />
+            <path d="M210 84 Q210 170 210 244" stroke="#4a2d15" stroke-width="5" fill="none" />
+            <path d="M150 110 Q210 96 286 124" stroke="#8a5830" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7" />
+            <!-- pronotum -->
+            <ellipse cx="118" cy="120" rx="60" ry="48" fill="#5a3318" />
+
+            <!-- antennae -->
+            <g class="antenna antenna--1">
+              <path d="M70 110 Q24 70 14 18" stroke="#3a2410" stroke-width="8" stroke-linecap="round" fill="none" />
+            </g>
+            <g class="antenna antenna--2">
+              <path d="M96 96 Q74 48 92 6" stroke="#3a2410" stroke-width="8" stroke-linecap="round" fill="none" />
+            </g>
+
+            <!-- head -->
+            <ellipse cx="78" cy="150" rx="46" ry="42" fill="#4d2c14" />
+            <!-- angry brows -->
+            <path d="M44 124 Q62 122 80 134" stroke="#1c1109" stroke-width="9" stroke-linecap="round" fill="none" />
+            <path d="M86 130 Q104 124 120 134" stroke="#1c1109" stroke-width="9" stroke-linecap="round" fill="none" />
+            <!-- eyes -->
+            <g class="roach-eyes">
+              <ellipse cx="60" cy="146" rx="14" ry="16" fill="#fff" />
+              <ellipse cx="100" cy="150" rx="13" ry="15" fill="#fff" />
+              <circle cx="54" cy="150" r="7.5" fill="#160d06" />
+              <circle cx="94" cy="154" r="7" fill="#160d06" />
+              <circle cx="56" cy="147" r="2.6" fill="#fff" />
+              <circle cx="96" cy="151" r="2.4" fill="#fff" />
+            </g>
+            <!-- smug grin -->
+            <path d="M48 174 Q74 196 110 178" stroke="#1c1109" stroke-width="6" stroke-linecap="round" fill="none" />
+            <path d="M86 182 L92 190 L100 182 Z" fill="#fff" />
+
+            <!-- glove arms -->
+            <path d="M104 150 Q78 110 60 86" stroke="#5a3318" stroke-width="16" stroke-linecap="round" fill="none" />
+            <path d="M110 178 Q80 184 52 192" stroke="#5a3318" stroke-width="16" stroke-linecap="round" fill="none" />
+
+            <!-- top glove (guard) -->
+            <g class="glove glove--guard">
+              <ellipse cx="52" cy="74" rx="42" ry="40" fill="#d62828" />
+              <ellipse cx="52" cy="74" rx="42" ry="40" fill="url(#gloveGrad)" />
+              <ellipse cx="80" cy="86" rx="16" ry="18" fill="#bf2020" />
+              <path d="M30 70 Q52 60 74 70" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
+              <path d="M30 82 Q52 74 74 82" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
+              <rect x="58" y="98" width="34" height="20" rx="9" fill="#f3f3f3" transform="rotate(28 75 108)" />
+            </g>
+
+            <!-- front glove (jab) -->
+            <g class="glove glove--jab">
+              <ellipse cx="40" cy="196" rx="44" ry="42" fill="#e23232" />
+              <ellipse cx="40" cy="196" rx="44" ry="42" fill="url(#gloveGrad)" />
+              <ellipse cx="64" cy="172" rx="16" ry="18" fill="#bf2020" />
+              <path d="M16 188 Q40 178 64 190" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
+              <path d="M14 202 Q40 194 64 204" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
+              <rect x="58" y="206" width="36" height="20" rx="9" fill="#f3f3f3" transform="rotate(-18 76 216)" />
+            </g>
+          </g>
+
+          <defs>
+            <radialGradient id="roachGrad" cx="40%" cy="32%" r="80%">
+              <stop offset="0%" stop-color="#9c6433" />
+              <stop offset="60%" stop-color="#6f421f" />
+              <stop offset="100%" stop-color="#4a2c14" />
+            </radialGradient>
+            <linearGradient id="gloveGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff5a5a" />
+              <stop offset="100%" stop-color="#b81d1d" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="fighter__name fighter__name--roach">Boxer Roach</span>
+      </div>
+    </section>
+
+    <!-- ============ CONTROLS ============ -->
+    <section class="controls" aria-label="Game menu">
+      <button class="btn-start" id="startBtn" type="button">
+        <span class="btn-start__icon">▶</span>
+        <span class="btn-start__label">Start Game</span>
+      </button>
+
+      <div class="control-row">
+        <div class="control-group">
+          <span class="control-label">Difficulty</span>
+          <div class="level-select" role="group" aria-label="Select difficulty">
+            <button class="level-btn" type="button" data-level="easy">Easy</button>
+            <button class="level-btn is-active" type="button" data-level="medium">Medium</button>
+            <button class="level-btn" type="button" data-level="hard">Hard</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-label">Sound</span>
+          <button class="sound-toggle is-on" id="soundToggle" type="button" aria-pressed="true">
+            <span class="sound-toggle__icon" aria-hidden="true">🔊</span>
+            <span class="sound-toggle__text">On</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="credits">A 2D web game · prototype build</footer>
+  </main>
+
+  <!-- ============ START OVERLAY ============ -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="overlay__card" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+      <h2 class="overlay__title" id="overlayTitle">Get Ready!</h2>
+      <p class="overlay__line">Difficulty: <strong id="overlayLevel">Medium</strong></p>
+      <div class="overlay__loader" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="overlay__note">The arena is being set up — full gameplay drops in the next update.</p>
+      <button class="btn-ghost" id="overlayClose" type="button">Back to Menu</button>
+    </div>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
