@@ -40,9 +40,18 @@
     <!-- ============ STAGE: HERO vs ROACH ============ -->
     <section class="stage" aria-label="Game characters">
 
-      <!-- ---------- MODI (HERO) ---------- -->
+      <!-- ---------- MODI (HERO — full 3D render, Raid spray included) ---------- -->
       <div class="fighter fighter--hero">
-        <svg class="char char--modi" viewBox="0 0 340 640" role="img" aria-label="Cartoon of Narendra Modi in an orange jacket holding an anti-cockroach spray">
+        <div class="char char--modi modi-hero" role="img"
+             aria-label="3D Narendra Modi in action pose, holding a Raid spray can">
+          <img class="modi-hero__img"
+               src="assets/images/modi-final-cut.png"
+               alt="Modi - The Exterminator"
+               draggable="false" />
+        </div>
+
+        <!-- legacy SVG kept hidden as a fallback (display:none in CSS) -->
+        <svg class="char char--modi modi-fallback" viewBox="0 0 340 640" role="img" aria-label="Cartoon of Narendra Modi in an orange jacket holding an anti-cockroach spray">
           <defs>
             <linearGradient id="jkt" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#e08e3b" />
@@ -237,91 +246,13 @@
         <span class="vs__text">VS</span>
       </div>
 
-      <!-- ---------- COCKROACH ---------- -->
+      <!-- ---------- COCKROACH (bipedal villain, CJP cap, no gloves) ---------- -->
       <div class="fighter fighter--roach">
-        <svg class="char char--roach" viewBox="0 0 340 320" role="img" aria-label="Cockroach character wearing boxing gloves">
-          <ellipse class="char__shadow" cx="185" cy="298" rx="120" ry="22" />
-          <g class="roach-bob">
-            <!-- legs -->
-            <path d="M150 230 q-8 36 -30 56" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
-            <path d="M195 240 q4 38 -10 60" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
-            <path d="M235 236 q18 32 14 60" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
-            <path d="M270 220 q30 24 40 50" stroke="#3f2712" stroke-width="11" stroke-linecap="round" fill="none" />
-
-            <!-- body -->
-            <ellipse cx="200" cy="168" rx="128" ry="94" fill="#6f421f" />
-            <ellipse cx="200" cy="168" rx="128" ry="94" fill="url(#roachGrad)" />
-            <!-- wing shells -->
-            <path d="M120 96 Q210 70 320 110 Q300 220 210 244 Q150 170 120 96 Z" fill="#7d4d27" />
-            <path d="M210 84 Q210 170 210 244" stroke="#4a2d15" stroke-width="5" fill="none" />
-            <path d="M150 110 Q210 96 286 124" stroke="#8a5830" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7" />
-            <!-- pronotum -->
-            <ellipse cx="118" cy="120" rx="60" ry="48" fill="#5a3318" />
-
-            <!-- antennae -->
-            <g class="antenna antenna--1">
-              <path d="M70 110 Q24 70 14 18" stroke="#3a2410" stroke-width="8" stroke-linecap="round" fill="none" />
-            </g>
-            <g class="antenna antenna--2">
-              <path d="M96 96 Q74 48 92 6" stroke="#3a2410" stroke-width="8" stroke-linecap="round" fill="none" />
-            </g>
-
-            <!-- head -->
-            <ellipse cx="78" cy="150" rx="46" ry="42" fill="#4d2c14" />
-            <!-- angry brows -->
-            <path d="M44 124 Q62 122 80 134" stroke="#1c1109" stroke-width="9" stroke-linecap="round" fill="none" />
-            <path d="M86 130 Q104 124 120 134" stroke="#1c1109" stroke-width="9" stroke-linecap="round" fill="none" />
-            <!-- eyes -->
-            <g class="roach-eyes">
-              <ellipse cx="60" cy="146" rx="14" ry="16" fill="#fff" />
-              <ellipse cx="100" cy="150" rx="13" ry="15" fill="#fff" />
-              <circle cx="54" cy="150" r="7.5" fill="#160d06" />
-              <circle cx="94" cy="154" r="7" fill="#160d06" />
-              <circle cx="56" cy="147" r="2.6" fill="#fff" />
-              <circle cx="96" cy="151" r="2.4" fill="#fff" />
-            </g>
-            <!-- smug grin -->
-            <path d="M48 174 Q74 196 110 178" stroke="#1c1109" stroke-width="6" stroke-linecap="round" fill="none" />
-            <path d="M86 182 L92 190 L100 182 Z" fill="#fff" />
-
-            <!-- glove arms -->
-            <path d="M104 150 Q78 110 60 86" stroke="#5a3318" stroke-width="16" stroke-linecap="round" fill="none" />
-            <path d="M110 178 Q80 184 52 192" stroke="#5a3318" stroke-width="16" stroke-linecap="round" fill="none" />
-
-            <!-- top glove (guard) -->
-            <g class="glove glove--guard">
-              <ellipse cx="52" cy="74" rx="42" ry="40" fill="#d62828" />
-              <ellipse cx="52" cy="74" rx="42" ry="40" fill="url(#gloveGrad)" />
-              <ellipse cx="80" cy="86" rx="16" ry="18" fill="#bf2020" />
-              <path d="M30 70 Q52 60 74 70" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
-              <path d="M30 82 Q52 74 74 82" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
-              <rect x="58" y="98" width="34" height="20" rx="9" fill="#f3f3f3" transform="rotate(28 75 108)" />
-            </g>
-
-            <!-- front glove (jab) -->
-            <g class="glove glove--jab">
-              <ellipse cx="40" cy="196" rx="44" ry="42" fill="#e23232" />
-              <ellipse cx="40" cy="196" rx="44" ry="42" fill="url(#gloveGrad)" />
-              <ellipse cx="64" cy="172" rx="16" ry="18" fill="#bf2020" />
-              <path d="M16 188 Q40 178 64 190" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
-              <path d="M14 202 Q40 194 64 204" stroke="#fff" stroke-width="4" fill="none" opacity="0.85" />
-              <rect x="58" y="206" width="36" height="20" rx="9" fill="#f3f3f3" transform="rotate(-18 76 216)" />
-            </g>
-          </g>
-
-          <defs>
-            <radialGradient id="roachGrad" cx="40%" cy="32%" r="80%">
-              <stop offset="0%" stop-color="#9c6433" />
-              <stop offset="60%" stop-color="#6f421f" />
-              <stop offset="100%" stop-color="#4a2c14" />
-            </radialGradient>
-            <linearGradient id="gloveGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#ff5a5a" />
-              <stop offset="100%" stop-color="#b81d1d" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <span class="fighter__name fighter__name--roach">Boxer Roach</span>
+        <img class="char char--roach"
+             src="assets/images/roach.png"
+             alt="Roach — CJP, the cockroach villain"
+             draggable="false" />
+        <span class="fighter__name fighter__name--roach">Roach &mdash; CJP</span>
       </div>
     </section>
 

@@ -164,7 +164,42 @@ body {
   filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.45));
 }
 .char--modi  { height: clamp(250px, 46vh, 470px); animation: heroIdle 4.6s ease-in-out infinite; }
-.char--roach { height: clamp(150px, 28vh, 300px); animation: roachIdle 3.4s ease-in-out infinite; }
+.char--roach {
+  height: clamp(280px, 54vh, 540px);
+  width: auto;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  animation: roachIdle 3.4s ease-in-out infinite, modiBreathe 3.6s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+/* ---- Modi 3D character render hero ---- */
+.modi-hero {
+  position: relative;
+  height: clamp(280px, 54vh, 540px);
+  /* aspect of cropped modi-final-cut.png (~897 x 1439) */
+  aspect-ratio: 897 / 1439;
+  display: block;
+  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.55));
+  animation: heroIdle 4.6s ease-in-out infinite;
+}
+.modi-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* very subtle "breathing" without distorting the render */
+  animation: modiBreathe 3.8s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+/* Hide the legacy SVG fallback (now superseded by the PNG hero) */
+.modi-fallback { display: none; }
 
 .char__shadow { fill: rgba(0, 0, 0, 0.32); }
 
@@ -188,11 +223,9 @@ body {
 .mist__p:nth-child(3) { animation-delay: 0.6s; }
 .mist__p:nth-child(4) { animation-delay: 0.9s; }
 
-.roach-bob       { animation: roachSquash 1.7s ease-in-out infinite; transform-origin: 185px 260px; }
-.antenna--1      { animation: antenna 2.1s ease-in-out infinite; transform-origin: 70px 110px; }
-.antenna--2      { animation: antenna 2.1s ease-in-out infinite reverse; transform-origin: 96px 96px; }
-.glove--jab      { animation: jab 2.4s ease-in-out infinite; transform-origin: 90px 196px; }
-.glove--guard    { animation: guard 2.4s ease-in-out infinite; transform-origin: 60px 90px; }
+/* SVG-internal animation hooks (.roach-bob, .antenna--*, .cap, .arm--*) are no
+   longer used now that the cockroach is a PNG image — see .char--roach above
+   for the combined idle-float + breathe animation that drives the new hero. */
 
 /* ============ VS BADGE ============ */
 .vs {
@@ -429,15 +462,16 @@ body {
 
 /* ============ ANIMATIONS ============ */
 @keyframes heroIdle  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes modiBreathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.012); } }
+/* spraySway / mistPuff keyframes removed — Modi's PNG now includes the spray can,
+   no overlay or CSS mist particles needed. */
 @keyframes roachIdle { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-7px) rotate(1.5deg); } }
 @keyframes breathe   { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.035); } }
 @keyframes sprayShake { 0%,90%,100% { transform: rotate(0); } 93% { transform: rotate(-4deg); } 96% { transform: rotate(4deg); } }
 @keyframes blink     { 0%,94%,100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
 @keyframes mist      { 0% { transform: scale(0.3) translate(0,0); opacity: 0; } 25% { opacity: 0.9; } 100% { transform: scale(1.5) translate(40px,-46px); opacity: 0; } }
-@keyframes roachSquash { 0%,100% { transform: scaleY(1) scaleX(1); } 50% { transform: scaleY(0.94) scaleX(1.05); } }
-@keyframes antenna   { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-13deg); } }
-@keyframes jab       { 0%,70%,100% { transform: translateX(0) rotate(0); } 82% { transform: translateX(-26px) rotate(-7deg); } }
-@keyframes guard     { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-4px); } }
+/* SVG-internal keyframes (antenna/capWobble/armPunch/armFlex/roachSquash) removed:
+   the cockroach is now a PNG image animated as a whole via heroIdle + modiBreathe. */
 @keyframes vsPulse   { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
 @keyframes spin      { to { transform: rotate(360deg); } }
 @keyframes titleGlow { 0%,100% { filter: drop-shadow(0 4px 0 #9a3b00) drop-shadow(0 0 8px rgba(255,206,58,0.3)); } 50% { filter: drop-shadow(0 4px 0 #9a3b00) drop-shadow(0 0 22px rgba(255,206,58,0.7)); } }
@@ -452,7 +486,10 @@ body {
   .stage { gap: 0; }
   .vs { margin-bottom: clamp(40px, 16vh, 80px); }
   .char--modi  { height: clamp(220px, 38vh, 340px); }
-  .char--roach { height: clamp(132px, 23vh, 210px); }
+  .char--roach { height: clamp(240px, 42vh, 360px); }
+  .modi-hero {
+    height: clamp(240px, 42vh, 360px);
+  }
   .control-row { flex-direction: column; }
   .title__line--bottom { font-size: clamp(2.6rem, 13vw, 4rem); }
 }

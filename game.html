@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Cockroach Knockout — Office Infestation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪳</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/game.css" />
+</head>
+<body class="game-body">
+
+  <!-- ============ 3D SCENE ============ -->
+  <canvas id="scene"></canvas>
+
+  <!-- ============ HUD ============ -->
+  <div id="hud" class="hud" hidden>
+    <div class="hud__top">
+      <div class="hud__chip hud__score">
+        <span class="hud__icon">⭐</span>
+        <span><b id="score-val">0</b><small>SCORE</small></span>
+      </div>
+
+      <div class="hud__chip hud__roach">
+        <span class="hud__icon">🪳</span>
+        <span><b><i id="roach-killed">0</i> / <i id="roach-target">12</i></b><small>EXTERMINATED</small></span>
+      </div>
+
+      <div class="hud__chip hud__composure">
+        <span class="hud__icon">🧘</span>
+        <div class="hud__bar-wrap">
+          <span class="hud__bar-label">COMPOSURE</span>
+          <div class="hud__bar"><div class="hud__bar-fill" id="composure-fill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud__spray">
+      <span class="hud__icon">🧴</span>
+      <div class="hud__bar hud__bar--spray"><div class="hud__bar-fill" id="spray-fill"></div></div>
+    </div>
+
+    <div class="hud__hint">
+      <kbd>W A S D</kbd> / <kbd>↑ ↓ ← →</kbd> Move &nbsp;·&nbsp;
+      <kbd>Enter</kbd> / <kbd>Space</kbd> Spray &nbsp;·&nbsp; <kbd>P</kbd> Pause
+    </div>
+
+    <div id="combo" class="combo"></div>
+  </div>
+
+  <!-- floating score / fx popups get appended here -->
+  <div id="fx-layer" class="fx-layer"></div>
+
+  <!-- ============ LOADING ============ -->
+  <div id="loading" class="overlay overlay--solid">
+    <div class="loader-box">
+      <div class="loader-spin"></div>
+      <p>Entering the PM's Office…</p>
+    </div>
+  </div>
+
+  <!-- ============ INTRO / RULES ============ -->
+  <div id="intro" class="overlay" hidden>
+    <div class="card card--wide">
+      <div class="card__badge">EASY MODE</div>
+      <h1 class="card__title">Office Infestation</h1>
+      <p class="card__lead">
+        Cockroaches have stormed the Prime Minister's office! Help Modi
+        exterminate them with his Raid spray before they wreck his composure.
+      </p>
+
+      <div class="rules">
+        <div class="rule">
+          <span class="rule__key"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+          <span class="rule__txt"><b>Move</b> Modi around the office (arrow keys work too)</span>
+        </div>
+        <div class="rule">
+          <span class="rule__key"><kbd>Enter</kbd></span>
+          <span class="rule__txt"><b>Hold to Spray</b> — douse a roach until it flips over</span>
+        </div>
+        <div class="rule">
+          <span class="rule__key"><kbd>P</kbd></span>
+          <span class="rule__txt"><b>Pause</b> the game anytime</span>
+        </div>
+      </div>
+
+      <ul class="goals">
+        <li><b>Goal:</b> Exterminate <b id="intro-target">12</b> cockroaches.</li>
+        <li><b>Composure:</b> every roach that touches Modi knocks it down — hit 0 and it's game over.</li>
+        <li><b>Combos:</b> chain quick kills for big score multipliers.</li>
+      </ul>
+
+      <button id="intro-go" class="btn btn--primary">Let's Go! ▶</button>
+    </div>
+  </div>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <div id="countdown" class="countdown" hidden><span></span></div>
+
+  <!-- ============ PAUSE ============ -->
+  <div id="pause" class="overlay" hidden>
+    <div class="card">
+      <h2 class="card__title">Paused</h2>
+      <p class="card__lead">Take a breath, Prime Minister.</p>
+      <button id="resume-btn" class="btn btn--primary">Resume ▶</button>
+      <button id="pause-restart" class="btn btn--ghost">Restart</button>
+      <a href="index.html" class="btn btn--ghost">Main Menu</a>
+    </div>
+  </div>
+
+  <!-- ============ RESULT ============ -->
+  <div id="result" class="overlay" hidden>
+    <div class="card">
+      <div id="result-emoji" class="result-emoji">🏆</div>
+      <h2 id="result-title" class="card__title">Office Secured!</h2>
+      <p id="result-sub" class="card__lead">The infestation has been crushed.</p>
+      <div id="result-stats" class="stats"></div>
+      <button id="replay-btn" class="btn btn--primary">Play Again ▶</button>
+      <a href="index.html" class="btn btn--ghost">Main Menu</a>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>

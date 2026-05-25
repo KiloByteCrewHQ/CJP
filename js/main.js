@@ -76,10 +76,12 @@
 
   startBtn.addEventListener("click", function () {
     GameAudio.start();
-    openOverlay();
-    // Placeholder for the next milestone: this is where the Phaser
-    // game scene will be launched once gameplay is built.
-    console.log("[Cockroach Knockout] Start — difficulty:", state.level);
+    // fade out, then launch the 3D game with the chosen difficulty
+    document.body.style.transition = "opacity 0.45s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function () {
+      window.location.href = "game.html?level=" + encodeURIComponent(state.level);
+    }, 460);
   });
   startBtn.addEventListener("mouseenter", function () { GameAudio.hover(); });
 
